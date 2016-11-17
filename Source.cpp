@@ -17,7 +17,15 @@ struct enemy{
 	enemy*next;//next enemy 
 	
 };
-enemy*killedhead=NULL;  // pointer to the head of the killed enemy list
+struct killed_enemy
+{  int s;
+ int fd;
+ int kd;
+ int kts;  //fight time for each enemy is equal to fd+kd 
+	node*next;
+};
+killed_enemy*killedhead=NULL;  // pointer to the head of the killed enemy list
+
 bool createnode(enemy*&create) // b3tna el create by ref 3ashan han3'yar fel value beta3itha. mmkn n5aliha betshawir 3ala null elawil 
 	// had to move it above fileloding to be able to use it inside file loading
 {int s;
@@ -60,16 +68,25 @@ void delete_enemy(enemy*head)
     delete loc;
    }
 }
-void killed(enemy*killedhead,enemy*loc)
-{   if(killedhead==NULL)
-     {killedhead=loc;     loc->next=NULL;  }
-           else { enemy*trav=head;
+void killed(enemy*&killedhead,enemy*loc)
+{  killed_enemy*a=new killed_enemy;
+	killed_enemy*trav=killedhead;
+   a->s=loc->s;
+   a->fd=loc->fd;
+   a->kd=loc->kd;
+   a->kts=time_step;
+	if(killedhead==NULL)
+     {killedhead=a;     a->next=NULL;  }
+           else { 
 	   while(trav!=NULL) {  trav=trav->next; }
-	    trav->next=loc;
-	    loc->next=NULL;
+	    trav->next=a;
+	    a->next=NULL;
 	        } 
 }
-int main(){
+int main()
+	
+	[
+	
 output.open("output.txt",ios ::out);
 	enemy*inactive1= NULL; enemy*inactive2=NULL;//hatahom nafs el ism 3ashan matl3'batsh
 fileloading(inactive1,inactive2);
@@ -84,4 +101,5 @@ output<<"list of normal enemies"<<endl;
 	delete_enemy(inactive1);
         delete_enemy(inactive2);
 	return 0;}
+
 
