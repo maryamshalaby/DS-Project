@@ -17,6 +17,14 @@ struct enemy{
 	enemy*next;//next enemy 
 	
 };
+struct killed_enemy
+{  int s;
+ int fd;
+ int kd;
+ int kts;  //fight time for each enemy is equal to fd+kd 
+	node*next;
+};
+killed_enemy*killedhead=NULL;  // pointer to the head of the killed enemy list
 
 bool createnode(enemy*&create) // b3tna el create by ref 3ashan han3'yar fel value beta3itha. mmkn n5aliha betshawir 3ala null elawil 
 	// had to move it above fileloding to be able to use it inside file loading
@@ -48,11 +56,39 @@ void fileloading(enemy*&inactive1,enemy*&inactive2) // keda we decided we'll put
     }
 	
 }
-
-
-int main(){
+void delete_enemy(enemy*head)
+{ enemy*preloc=NULL;       enemy*loc=head;
+ while(loc->t<timestep && loc->h!=0)
+ { pleloc=preloc->next;      loc=loc->next;   }
+ if ( loc->h==0)
+   { if(preloc==NULL)   { head=head->next; delete preloc;   }
+ else if(loc->next==NULL)  { preloc->next==NULL;  }
+  else {  preloc->next=loc->next; }
+    killed(killedhead,loc);
+    delete loc;
+   }
+}
+void killed(enemy*&killedhead,enemy*loc)
+{  killed_enemy*a=new killed_enemy;
+	killed_enemy*trav=killedhead;
+   a->s=loc->s;
+   a->fd=loc->fd;
+   a->kd=loc->kd;
+   a->kts=time_step;
+	if(killedhead==NULL)
+     {killedhead=a;     a->next=NULL;  }
+           else { 
+	   while(trav!=NULL) {  trav=trav->next; }
+	    trav->next=a;
+	    a->next=NULL;
+	        } 
+}
+int main()
+	
+	[
+	
 output.open("output.txt",ios ::out);
-	enemy*inactive1= NULL; enemy*inactive2=NULL; //hatahom nafs el ism 3ashan matl3'batsh
+	enemy*inactive1= NULL; enemy*inactive2=NULL;//hatahom nafs el ism 3ashan matl3'batsh
 fileloading(inactive1,inactive2);
 output<<"list of normal enemies"<<endl;
  while(inactive1!=NULL)
@@ -62,6 +98,8 @@ output<<"list of normal enemies"<<endl;
   while(inactive2!=NULL)
 	 {output<<"s "<<inactive2->s<<" type "<<inactive2->ty<<endl;
  inactive2= inactive2->next;}
-
+	delete_enemy(inactive1);
+        delete_enemy(inactive2);
 	return 0;}
+
 
