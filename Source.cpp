@@ -35,6 +35,54 @@ struct castle{
 	tower* d;
 };
 
+killed_enemy*head[4]={NULL,NULL,NULL,NULL};
+
+void deleted(enemy*&active,castle c,enemy*loc,int&count)
+{
+	enemy*region;
+	int i;
+	if(loc->r=='a') region=c.a->region;
+  else if(loc->r=='b')  region=c.b->region;
+  else if(loc->r=='c')        region=c.c->region;
+  else  region=c.d->region;
+	enemy*preloc=active;
+ enemy*r_preloc=region;
+ if(loc==preloc)    { active=preloc->next; }
+ else  { while(preloc->next!=loc)   preloc=preloc->next;
+          preloc->next=loc->next;
+       }
+		  if(loc==r_preloc)    {region=r_preloc->nextregion; }
+		  else  { while(r_preloc->nextregion!=loc)   r_preloc=r_preloc->nextregion;
+		  r_preloc->nextregion=loc->nextregion;
+		        }
+  count++;
+  delete preloc;
+  int i;
+  if(region->r=='a') i=0;
+  else if(region->r=='b') i=1;
+  else if(region->r=='c') i=2;
+  else i=3;
+  killed(loc,head[i]);
+
+}
+
+void killed(enemy*loc,killed_enemy*&head)
+{ killed_enemy*temp=head;
+temp->s=loc->s;
+temp->h=loc->h;
+temp->st=loc->st;
+temp->t=loc->t;
+temp->r=loc->r;
+if(head==NULL)  {  head=temp;  temp->next=NULL; }
+else 
+{ temp->next=head;  
+  head=temp;
+}
+delete loc;
+
+}
+
+
 bool createnode(enemy*&create) // b3tna el create by ref 3ashan han3'yar fel value beta3itha. mmkn n5aliha betshawir 3ala null elawil 
 	// had to move it above fileloding to be able to use it inside file loading
 {int s;
@@ -118,6 +166,9 @@ output<<"list of normal enemies"<<endl;
 while(active1!=NULL||active2!=NULL)// so our condition here means that as long as there are enemies we loop
 {time++;
 // rest of funtions
+deleted(active1,c,loc1,count);
+	deleted(active2,c,loc2,count);
+
 }
    }
 
