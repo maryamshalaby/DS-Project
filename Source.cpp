@@ -49,7 +49,6 @@ killed_enemy*head[4]={NULL,NULL,NULL,NULL};
 void deleted(enemy*&active,castle& c,enemy*loc,int&count)
 {
 	enemy*region;
-	int i;
 	if(loc->r=='a') region=c.a->region;
   else if(loc->r=='b')  region=c.b->region;
   else if(loc->r=='c')        region=c.c->region;
