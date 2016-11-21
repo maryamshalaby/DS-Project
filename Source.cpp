@@ -153,7 +153,8 @@ ca.a=&a; ca.b=&b; ca.c=&c; ca.d=&d;// assigns tower adresses to main castle
 void simplesimulator()
 {castle c; int c1,c2,c3; int time=0;
 enemy*active1= NULL; enemy*active2=NULL; //hatahom nafs el ism 3ashan matl3'batsh
-fileloading(active1,active2,c,c1,c2,c3);
+fileloading(active1,active2,c,c1,c2,c3); 
+ int count=0;
 /*output.open("output.txt",ios ::out);
 output<<"list of normal enemies"<<endl;
  while(active1!=NULL)
