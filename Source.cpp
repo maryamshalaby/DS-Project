@@ -102,12 +102,11 @@ regionlinking(active1,active2,d);
 ca.a=&a; ca.b=&b; ca.c=&c; ca.d=&d;// assigns tower adresses to main castle 
 }
 
-
-int main(){
-	castle c; int c1,c2,c3;
-output.open("output.txt",ios ::out);
-	enemy*active1= NULL; enemy*active2=NULL; //hatahom nafs el ism 3ashan matl3'batsh
+void simplesimulator()
+{castle c; int c1,c2,c3; int time=0;
+enemy*active1= NULL; enemy*active2=NULL; //hatahom nafs el ism 3ashan matl3'batsh
 fileloading(active1,active2,c,c1,c2,c3);
+/*output.open("output.txt",ios ::out);
 output<<"list of normal enemies"<<endl;
  while(active1!=NULL)
 	 {output<<"s "<<active1->s<<" type "<<active1->ty<<endl;
@@ -115,6 +114,14 @@ output<<"list of normal enemies"<<endl;
  output<<"list of sheilded enemies"<<endl;
   while(active2!=NULL)
 	 {output<<"s "<<active2->s<<" type "<<active2->ty<<endl;
- active2= active2->next;}
+  active2= active2->next;}*/
+while(active1!=NULL||active2!=NULL)// so our condition here means that as long as there are enemies we loop
+{time++;
+// rest of funtions
+}
+   }
 
+int main()
+{
+simplesimulator();
 	return 0;}
