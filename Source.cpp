@@ -35,6 +35,15 @@ struct castle{
 	tower* d;
 };
 
+struct killed_enemy
+{  int s;
+ int st;  //first time the enemy got shot
+ int t;    //the time step the enemy enterd
+ int h;  //  the enemy's original health
+ char r; //region
+ killed_enemy*next;  
+};
+
 killed_enemy*head[4]={NULL,NULL,NULL,NULL};
 
 void deleted(enemy*&active,castle& c,enemy*loc,int&count)
