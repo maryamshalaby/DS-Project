@@ -37,7 +37,7 @@ struct castle{
 
 killed_enemy*head[4]={NULL,NULL,NULL,NULL};
 
-void deleted(enemy*&active,castle c,enemy*loc,int&count)
+void deleted(enemy*&active,castle& c,enemy*loc,int&count)
 {
 	enemy*region;
 	int i;
